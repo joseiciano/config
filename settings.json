@@ -1,0 +1,67 @@
+{
+    "workbench.colorTheme": "Dracula",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.minimap.enabled": false,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "explorer.confirmDelete": false,
+    "C_Cpp.updateChannel": "Insiders",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "explorer.confirmDragAndDrop": false,
+    "prettier.printWidth": 100,
+    "editor.wordWrapColumn": 120,
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, BreakBeforeBraces: Attach, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4 }",
+    "python.jediEnabled": false,
+    "editor.formatOnSave": true,
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "[java]": {},
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    },
+    "java.requirements.JDK11Warning": false,
+    "workbench.startupEditor": "newUntitledFile"
+}
