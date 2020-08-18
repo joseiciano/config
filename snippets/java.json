@@ -292,4 +292,15 @@
 		],
 		"description": "Scanner next double"
 	},
+	"PrintWriter System Out": {
+		"prefix": [
+			"PrintWriter System Out",
+			"PrintWriter SysOut",
+			"PW SysOut"
+		],
+		"body": [
+			"PrintWriter out = new PrintWriter(System.out, true);"
+		],
+		"description": "Printwriter System.Out"
+	}
 }
