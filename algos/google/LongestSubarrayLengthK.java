@@ -20,33 +20,13 @@ public class LongestSubarrayLengthK {
     static PrintWriter out = new PrintWriter(System.out, true);
 
     static int[] LSLKOpt(int[] A, int K) {
-        int maxi = 0;
-        int maxj = 0;
+        int first = 0;
 
-        for (int i = 0; i < A.length; i++) {
-            int startIdx = i;
-            int endIdx = i + K - 1;
+        for (int i = 1; i < A.length - K + 1; i++)
+            if (A[first] < A[i])
+                first = i;
 
-            if (endIdx < A.length)
-                if (maxi == maxj || isGreater(A, maxi, maxj, startIdx, endIdx) == -1) {
-                    maxi = startIdx;
-                    maxj = endIdx;
-                }
-        }
-
-        return Arrays.copyOfRange(A, maxi, maxj);
-    }
-
-    static int isGreater(int[] A, int maxi, int maxj, int startIdx, int endIdx) {
-        while (maxi <= maxj && startIdx <= endIdx) {
-            if (A[maxi] > A[startIdx])
-                return 1;
-            else if (A[maxi] < A[startIdx])
-                return -1;
-            maxi++;
-            startIdx++;
-        }
-        return 0;
+        return Arrays.copyOfRange(A, first, first + K);
     }
 
     static int[] LSLK(int[] A, int K) {
@@ -60,7 +40,6 @@ public class LongestSubarrayLengthK {
                 for (int j = i; j < i + K; j++)
                     temp[k++] = A[j];
 
-            System.out.println(Arrays.toString(temp));
             if (isGreater(temp, ret) == 1) {
                 for (int j = 0; j < K; j++)
                     ret[j] = temp[j];
@@ -86,7 +65,7 @@ public class LongestSubarrayLengthK {
 
     public static void main(String[] args) {
         out.println("RESULTS");
-        // out.println(Arrays.toString(LSLKOpt(new int[] { 1, 4, 3, 2, 5 }, 4)));
+        // out.println(Arrays.toString(LSLK(new int[] { 1, 4, 3, 2, 5 }, 4)));
         out.println(Arrays.toString(LSLKOpt(new int[] { 1, 4, 3, 2, 5 }, 4)));
     }
 }
