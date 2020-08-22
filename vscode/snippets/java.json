@@ -150,12 +150,12 @@
     "description": "Object class"
   },
   "Scanner input file": {
-    "prefix": ["scanner-in-file", "scnin", "scnfile"],
+    "prefix": ["scanner-in-file", "scnfile"],
     "body": ["Scanner in = new Scanner(new File(${1}));"],
     "description": "Scanner for file input"
   },
   "Scanner input": {
-    "prefix": ["scanner-in-system-in", "scnusr", "scnuser"],
+    "prefix": ["scanner-in-system-in", "scnsysin", "scnin", "scnusr", "scnuser"],
     "body": ["Scanner in = new Scanner(System.in);"],
     "description": "Scanner for user input"
   },
