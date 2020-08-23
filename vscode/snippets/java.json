@@ -57,49 +57,70 @@
     "description": "For-each loop"
   },
   "Public static void main throws Exception": {
-    "prefix": ["void main throws exception", "mainexception", "mainexc", "mnexc"],
+    "prefix": ["mnexc"],
     "body": ["public static void main(String[] args) throws Exception {", "\t$0", "}"],
     "description": "main throws Exception"
   },
   "Arraydeque": {
-    "prefix": ["deque", "dq"],
+    "prefix": ["deque"],
     "body": "ArrayDeque<${1}> ${2} = new ArrayDeque<>();",
     "description": "Arraydeque"
   },
   "PriorityQueue": {
-    "prefix": ["heap", "priorityq", "pqueue", "pq"],
+    "prefix": ["priorityq"],
     "body": "PriorityQueue<${1}> ${2} = new PriorityQueue<>();",
     "description": "Priorityqueue"
   },
   "ArrayList": {
-    "prefix": ["alist", "list", "lst", "arraylist"],
+    "prefix": ["alist", "lst"],
     "body": "List<${1}> ${2} = new ArrayList<>();",
     "description": "ArrayList"
   },
   "LinkedList": {
-    "prefix": ["llist", "llst", "linkedlist", "linklist"],
+    "prefix": ["llist", "llst", "linklist"],
     "body": "LinkedList<${1}> $2 = new LinkedList<>();",
     "description": "LinkedList"
   },
   "HashMap": {
-    "prefix": ["hashmap", "hshmp", "hshmap"],
+    "prefix": ["hshmp", "hshmap"],
     "body": "Map<${1}, ${2}} ${3} = new HashMap<>();",
     "description": "HashMap"
   },
   "TreeMap": {
-    "prefix": ["treemap", "treemp", "trmp"],
+    "prefix": ["treemp", "trmp"],
     "body": "TreeMap<${1}, ${2}> ${3} = new TreeMap<>();",
     "description": "TreeMap"
   },
   "HashSet": {
-    "prefix": ["hashset", "hshset", "hshst"],
+    "prefix": ["hshset", "hshst"],
     "body": "Set<${1}> ${2} = new HashSet<>();",
     "description": "HashSet"
   },
   "TreeSet": {
-    "prefix": ["treeset", "trset", "trst"],
+    "prefix": ["trset", "trst"],
     "body": "TreeSet<${1}> ${2} = new TreeSet<>();",
     "description": "TreeSet"
+  },
+  "Edge": {
+    "prefix": ["vertex-class", "vrtx"],
+    "body": [
+      "class edge implements Comparable<edge>{",
+      "\tint loc; // current source",
+      "\tint w; // weight\n",
+      "\tpublic pair(int ll, int ww) {",
+      "\t\tloc = ll;",
+      "\t\tw = ww;",
+      "\t}",
+
+      "\tpublic int compareTo(edge e) {",
+      "\t\treturn w - e.w;",
+      "}",
+
+      "\tpublic String toString() {",
+      "\t\t\"(\" + loc + \" : \" + w + \")\";",
+      "}"
+    ],
+    "description": "Pair class"
   },
   "Pair": {
     "prefix": ["pair"],
@@ -145,22 +166,22 @@
     "description": "Comparable Object class"
   },
   "Object": {
-    "prefix": ["object", "clss", "class"],
+    "prefix": ["clss"],
     "body": ["class ${1} {", "\n", "}"],
     "description": "Object class"
   },
   "Scanner input file": {
-    "prefix": ["scanner-in-file", "scnfile"],
+    "prefix": ["scnfile"],
     "body": ["Scanner in = new Scanner(new File(${1}));"],
     "description": "Scanner for file input"
   },
   "Scanner input": {
-    "prefix": ["scanner-in-system-in", "scnsysin", "scnin", "scnusr", "scnuser"],
+    "prefix": ["scnusr"],
     "body": ["Scanner in = new Scanner(System.in);"],
     "description": "Scanner for user input"
   },
   "FastScanner": {
-    "prefix": ["FastScanner-init", "fastscanner", "fstscnner", "fstscn"],
+    "prefix": ["fstscn"],
     "body": [
       "class FastScanner {\n",
       "\tBufferedReader br;",
@@ -204,32 +225,37 @@
     "description": "Fast Scanner for Input"
   },
   "Default Import Statements": {
-    "prefix": ["import-util-io", "imprt"],
+    "prefix": ["utilio"],
     "body": ["import java.util.*;", "import java.io.*;\n"],
     "description": "Wildstar imports java util and java io"
   },
   "Scanner Next Integer": {
-    "prefix": ["nextint", "nxtint"],
+    "prefix": ["nxtint"],
     "body": ["in.nextInt();"],
     "description": "Scanner next int"
   },
   "Scanner Next String": {
-    "prefix": ["nextstring", "nxtstr"],
+    "prefix": ["nxtstr"],
     "body": ["in.next();"],
     "description": "Scanner next string"
   },
   "Scanner Next Long": {
-    "prefix": ["nextlong", "nxtll", "nxtlong"],
+    "prefix": ["nxtll", "nxtlong"],
     "body": ["in.nextLong();"],
     "description": "Scanner next long"
   },
   "Scanner Next Double": {
-    "prefix": ["nextdouble", "nxtdbl", "nxtdouble"],
+    "prefix": ["nxtdbl", "nxtdouble"],
     "body": ["in.nextDouble();"],
     "description": "Scanner next double"
   },
+  "Arrays to String": {
+    "prefix": ["atostring"],
+    "body": ["Arrays.toString(${1})"],
+    "description": "Arrays to String"
+  },
   "PrintWriter System Out": {
-    "prefix": ["PrintWriter System Out", "PrintWriter SysOut", "PW SysOut"],
+    "prefix": ["PW SysOut"],
     "body": ["PrintWriter out = new PrintWriter(System.out, true);"],
     "description": "Printwriter System.Out"
   }

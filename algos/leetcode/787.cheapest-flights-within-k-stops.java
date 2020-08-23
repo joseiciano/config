@@ -9,49 +9,60 @@ import java.io.*;
 
 // @lc code=start
 class Solution {
-    class triplet {
-        int w; // weight/cost
-        int s; // stops
 
-        public triplet(int ww, int ss) {
+    class pair implements Comparable<pair>{
+        int loc;
+        int w;
+        int k;
+
+        public pair (int l, int ww, int kk) {
+            loc = l;
             w = ww;
-            s = ss;
-        }
-    }
-
-    class pair {
-        int dst; // destination
-        int w; // weight/cost
-        int s; // stops
-
-        public pair(int dd, int ww) {
-            dst = dd;
-            w = ww;
-            s = 0;
+            k = kk;
         }
 
+        public int compareTo(pair p) {
+            return w - p.w;
+        }
+        
         public String toString() {
-            return dst + ": " + w;
+            return loc + ": " + w + " in " + k + " stops";
         }
     }
 
     PrintWriter out = new PrintWriter(System.out, true);
 
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
-        List[] g = new List[n];
+        Map<Integer, List<pair>> g = new HashMap<>();
 
-        for (int i = 0; i < n; i++)
-            g[i] = new ArrayList<pair>();
-
-        for (int[] flight : flights) {
-            g[flight[0]].add(new pair(flight[1], flight[2]));
+        for (int i = 0; i < n; i++) {
+            g.put(i, new ArrayList<>());
         }
 
-        ArrayDeque<pair> q = new ArrayDeque<>();
-        for (pair start : (List<pair>) g[src])
-            q.offerLast(start);
+        for (int[] flight : flights) {
+            g.get(flight[0]).add(new pair(flight[1], flight[2], 0));
+        }
 
-        return 0;
+        PriorityQueue<pair> q = new PriorityQueue<>();    
+        for (pair start : g.get(src))
+            q.add(start);
+
+        while (!q.isEmpty()) {
+            pair cur = q.poll();
+
+            if (cur.loc == dst) {
+                return cur.w;
+            }
+
+            for (pair next : g.get(cur.loc)) {
+                if (cur.k + 1 <= K)
+                    q.offer(new pair(next.loc, next.w + cur.w, cur.k + 1));
+            }
+        }
+
+        return -1;
     }
 }
+
+
 // @lc code=end
