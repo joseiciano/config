@@ -5,34 +5,63 @@ import java.io.*;
 public class DecreasingSubsequences {
     static PrintWriter out = new PrintWriter(System.out, true);
 
-    static int solve(int[] nums) {
-        int n = nums.length;
+    static int binsearch(int[] nums, int lo, int hi, int target) {
+        while (lo < hi) {
+            int mid = lo + ((hi - lo) >> 1);
 
-        int[][] dp = new int[n + 1][n + 1];
-        for (int i = 0; i <= n; i++)
-            Arrays.fill(dp[i], 1);
-
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (nums[i - 1] < nums[j - 1]) {
-                    dp[i][j] = 1 + dp[i - 1][j - 1];
-                } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-                }
-            }
+            if (nums[mid] <= target)
+                lo = mid + 1;
+            else
+                hi = mid;
         }
 
-        return dp[n][n];
+        return lo;
+    }
+
+    static int solvebin(int[] nums) {
+        int n = nums.length;
+        int[] piles = new int[n];
+        int size = 0;
+
+        for (int num : nums) {
+            int idx = binsearch(piles, 0, size, num);
+            piles[idx] = num;
+            if (idx == size)
+                size++;
+        }
+
+        return size;
+    }
+
+    static int solve(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+
+        dp[0] = 1;
+        int ret = 0;
+
+        for (int i = 1; i < n; i++) {
+            int max = 0;
+
+            for (int j = 0; j < i; j++)
+                if (dp[j] > max && nums[j] < nums[i])
+                    max = dp[j];
+
+            dp[i] = max + 1;
+            ret = Math.max(ret, dp[i]);
+        }
+
+        return ret;
     }
 
     public static void main(String[] args) throws Exception {
         int[] in = new int[] { 5, 2, 4, 3, 1, 6 };
-        out.println(solve(in)); // 3
+        out.println(solvebin(in)); // 3
 
-        in = new int[] { 2, 9, 12, 13, 4, 7, 6, 5, 10 };
-        out.println(solve(in)); // 4
+        // in = new int[] { 2, 9, 12, 13, 4, 7, 6, 5, 10 };
+        // out.println(solve(in)); // 4
 
-        in = new int[] { 1, 1, 1 };
-        out.println(solve(in)); // 1
+        // in = new int[] { 1, 1, 1 };
+        // out.println(solve(in)); // 1
     }
 }
