@@ -258,5 +258,10 @@
     "prefix": ["PW SysOut"],
     "body": ["PrintWriter out = new PrintWriter(System.out, true);\n"],
     "description": "Printwriter System.Out"
-  }
+  },
+  "Infinity": {
+	"prefix": ["infinity"],
+	"body": ["int oo = (int)1e9;"],
+	"description": "Infinity when not needing maxint"
+	}
 }
