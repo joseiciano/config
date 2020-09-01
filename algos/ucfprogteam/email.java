@@ -1,4 +1,7 @@
 import java.util.*;
+
+import sun.text.normalizer.CodePointTrie.Fast;
+
 import java.io.*;
 
 public class email {
@@ -23,7 +26,6 @@ public class email {
             for (int first = in.nextInt(), j = 0; j < first; j++)
                 g.get(i).add(in.nextInt());
 
-        go(start);
     }
 
     static void go(int start) {
@@ -92,23 +94,5 @@ class FastScanner {
 
     int nextInt() {
         return Integer.parseInt(next());
-    }
-
-    long nextLong() {
-        return Long.parseLong(next());
-    }
-
-    double nextDouble() {
-        return Double.parseDouble(next());
-    }
-
-    String nextLine() {
-        String str = "";
-        try {
-            str = br.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return str;
     }
 }
