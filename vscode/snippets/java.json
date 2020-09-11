@@ -268,7 +268,7 @@
   },
   "PrintWriter System Out": {
     "prefix": ["PW Console"],
-    "body": ["PrintWriter out = new PrintWriter(System.out, true)"],
+    "body": ["PrintWriter out = new PrintWriter(System.out, true);"],
     "description": "Printwriter System.Out"
   },
   "Infinity": {

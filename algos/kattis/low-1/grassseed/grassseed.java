@@ -1,31 +1,6 @@
 import java.util.*;
 import java.io.*;
 
-public class numberSpiral {
-    static PrintWriter out = new PrintWriter(System.out, true);
-
-    public static void main(String[] args) throws Exception {
-        FastScanner in = new FastScanner();
-
-        for (int t = in.nextInt(); t > 0; t--) {
-            long y = in.nextLong();
-            long x = in.nextLong();
-
-            if (x > y) {
-                if (x % 2 == 1)
-                    out.println(x * x - y + 1);
-                else
-                    out.println((x - 1) * (x - 1) + y);
-            } else {
-                if (y % 2 == 0)
-                    out.println(y * y - x + 1);
-                else
-                    out.println((y - 1) * (y - 1) + x);
-            }
-        }
-    }
-}
-
 class FastScanner {
     final private int BUFFER_SIZE = 1 << 16;
     private DataInputStream din;
@@ -117,5 +92,27 @@ class FastScanner {
     public void close() throws Exception {
         if (din != null)
             din.close();
+    }
+}
+
+public class grassseed {
+    static PrintWriter out = new PrintWriter(System.out, true);
+
+    public static void main(String[] args) throws Exception {
+        FastScanner in = new FastScanner();
+
+        double c = in.nextDouble();
+        int l = in.nextInt();
+        double cost = 0;
+        for (int i = 0; i < l; i++) {
+            double w = in.nextDouble();
+            double h = in.nextDouble();
+
+            cost += (w * h);
+        }
+
+        cost *= c;
+
+        out.printf("%.8f\n", cost);
     }
 }
