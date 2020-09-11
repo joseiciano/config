@@ -1,74 +1,40 @@
 {
   "Newline Print to Console": {
     "prefix": "sysout",
-    "body": [
-      "System.out.println(\"$1\");\n"
-    ],
+    "body": ["System.out.println(\"$1\");\n"],
     "description": "Print to the console, newline"
   },
   "Printf to Console": {
     "prefix": "sysoutf",
-    "body": [
-      "System.out.printf(\"$1\");\n"
-    ],
+    "body": ["System.out.printf(\"$1\");\n"],
     "description": "Print to the console, printf"
   },
   "Print to Console": {
     "prefix": "sysoutnn",
-    "body": [
-      "System.out.print(\"$1\");\n"
-    ],
+    "body": ["System.out.print(\"$1\");\n"],
     "description": "Print to the console, no newline"
   },
   "USACO Template": {
     "prefix": "usaco",
-    "body": [
-      "/*",
-      "ID: icianoj1",
-      "LANG: JAVA",
-      "PROB: ${1}",
-      "*/\n\n"
-    ]
+    "body": ["/*", "ID: icianoj1", "LANG: JAVA", "PROB: ${1}", "*/\n\n"]
   },
   "For-Loop, i to j": {
-    "prefix": [
-      "fori"
-    ],
-    "body": [
-      "for (int ${1} = ${2}; ${1} < ${3}; ${1}++) {",
-      "\t$0",
-      "}\n"
-    ],
+    "prefix": ["fori"],
+    "body": ["for (int ${1} = ${2}; ${1} < ${3}; ${1}++) {", "\t$0", "}\n"],
     "description": "Regular for loop"
   },
   "For-Loop, reversed, i to j": {
-    "prefix": [
-      "revfor"
-    ],
-    "body": [
-      "for (int ${1} = ${2}; ${1} > ${3}; ${1}--) {",
-      "\t$0",
-      "}\n"
-    ],
+    "prefix": ["revfor"],
+    "body": ["for (int ${1} = ${2}; ${1} > ${3}; ${1}--) {", "\t$0", "}\n"],
     "description": "Reverse for loop"
   },
   "Public static void main throws Exception": {
-    "prefix": [
-      "mnexc",
-      "mainexc"
-    ],
-    "body": [
-      "public static void main(String[] args) throws Exception {",
-      "\t$0",
-      "}"
-    ],
+    "prefix": ["mnexc", "mainexc"],
+    "body": ["public static void main(String[] args) throws Exception {", "\t$0", "}"],
     "description": "main throws Exception"
   },
   "Edge": {
-    "prefix": [
-      "vertex-class",
-      "vrtx"
-    ],
+    "prefix": ["vertex-class", "vrtx"],
     "body": [
       "class edge implements Comparable<edge>{",
       "\tint loc; // current source",
@@ -87,9 +53,7 @@
     "description": "edge class"
   },
   "Pair": {
-    "prefix": [
-      "tuple"
-    ],
+    "prefix": ["tuple"],
     "body": [
       "class pair {",
       "\t${1} ${2}",
@@ -103,9 +67,7 @@
     "description": "Pair class"
   },
   "Pair Comparable": {
-    "prefix": [
-      "tuplecmp",
-    ],
+    "prefix": ["tuplecmp"],
     "body": [
       "class pair extends Comparable<pair> {",
       "\t${1} ${2}",
@@ -122,28 +84,116 @@
     "description": "Pair class"
   },
   "Scanner input file": {
-    "prefix": [
-      "scnfile"
-    ],
-    "body": [
-      "Scanner in = new Scanner(new File(${1}))"
-    ],
+    "prefix": ["scnfile"],
+    "body": ["FastScanner in = new FastScanner(new File(${1}));"],
     "description": "Scanner for file input"
   },
   "Scanner input": {
-    "prefix": [
-      "scnin",
-      "scanin"
-    ],
-    "body": [
-      "Scanner in = new Scanner(System.in)"
-    ],
+    "prefix": ["scnin", "scanin"],
+    "body": ["FastScanner in = new FastScanner();"],
     "description": "Scanner for user input"
   },
   "FastScanner": {
-    "prefix": [
-      "fstscn"
+    "prefix": ["fstscn"],
+    "body": [
+      "class FastScanner {",
+      "\tfinal private int BUFFER_SIZE = 1 << 16;",
+      "\tprivate DataInputStream din;",
+      "\tprivate byte[] buffer;",
+      "\tprivate int bufferPointer, bytesRead;\n",
+
+      "\tpublic FastScanner() {",
+      "\t\tdin = new DataInputStream(System.in);",
+      "\t\tbuffer = new byte[BUFFER_SIZE];",
+      "\t\tbufferPointer = bytesRead = 0;",
+      "\t}\n",
+
+      "\tpublic FastScanner(String filename) throws Exception {",
+      "\t\tdin = new DataInputStream(new FileInputStream(filename));",
+      "\t\tbuffer = new byte[BUFFER_SIZE];",
+      "\t\tbufferPointer = bytesRead = 0;",
+      "\t}\n",
+
+      "\tpublic String readLine() throws Exception {",
+      "\t\tbyte[] buf = new byte[64];",
+      "\t\tint cin = 0, c;",
+      "\t\twhile ((c = read()) != -1) {",
+      "\t\t\tif (c == '\\n')",
+      "\t\t\t\tbreak;",
+      "\t\t\tbuf[cin++] = (byte) c;",
+      "\t\t}",
+      "\t\treturn new String(buf, 0, cin);",
+      "\t}\n",
+
+      "\tpublic int nextInt() throws Exception {",
+      "\t\tint ret = 0;",
+      "\t\tbyte c = read();",
+      "\t\twhile (c <= ' ')",
+      "\t\t\tc = read();",
+      "\t\tboolean neg = (c == '-');",
+      "\t\tif (neg)",
+      "\t\t\tc = read();",
+      "\t\tdo {",
+      "\t\t\tret = ret * 10 + c - '0';",
+      "\t\t} while ((c = read()) >= '0' && c <= '9');",
+      "\t\treturn ret * (neg ? -1 : 1);",
+      "\t}\n",
+
+      "\tpublic long nextLong() throws Exception {",
+      "\t\tlong ret = 0;",
+      "\t\tbyte c = read();",
+      "\t\twhile (c <= ' ')",
+      "\t\t\tc = read();",
+      "\t\tboolean neg = (c == '-');",
+      "\t\tif (neg)",
+      "\t\t\tc = read();",
+      "\t\tdo {",
+      "\t\t\tret = ret * 10 + c - '0';",
+      "\t\t} while ((c = read()) >= '0' && c <= '9');",
+      "\t\treturn ret * (neg ? -1 : 1);",
+      "\t}\n",
+
+      "\tpublic double nextDouble() throws Exception {",
+      "\t\tdouble ret = 0, div = 1;",
+      "\t\tbyte c = read();",
+      "\t\twhile (c <= ' ')",
+      "\t\t\tc = read();",
+      "\t\tboolean neg = (c == '-');",
+      "\t\tif (neg)",
+      "\t\t\tc = read();",
+      "\t\tdo {",
+      "\t\t\tret = ret * 10 + c - '0';",
+      "\t\t} while ((c = read()) >= '0' && c <= '9');",
+      "\t\tif (c == '.') {",
+      "\t\t\twhile ((c = read()) >= '0' && c <= '9') {",
+      "\t\t\t\tret += (c - '0') / (div *= 10);",
+      "\t\t\t}",
+      "\t\t}",
+      "\t\treturn ret * (neg ? -1 : 1);",
+      "\t}\n",
+
+      "\tprivate void fillBuffer() throws Exception {",
+      "\t\tbytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);",
+      "\t\tif (bytesRead == -1)",
+      "\t\t\tbuffer[0] = -1;",
+      "\t}\n",
+
+      "\tprivate byte read() throws Exception {",
+      "\t\tif (bufferPointer == bytesRead)",
+      "\t\t\tfillBuffer();",
+      "\t\treturn buffer[bufferPointer++];",
+      "\t}\n",
+
+      "\tpublic void close() throws Exception {",
+      "\t\tif (din != null)",
+      "\t\t\tdin.close();",
+      "\t}",
+      "}\n"
     ],
+    "description": "Fastest Scanner in the West"
+  },
+  "Old FastScanner": {
+    "prefix": ["oldfstscn"],
     "body": [
       "class FastScanner {\n",
       "\tBufferedReader br;",
@@ -184,81 +234,46 @@
       "\t}",
       "}\n"
     ],
-    "description": "Fast Scanner for Input"
+    "description": "Old Fast Scanner for Input"
   },
   "Default Import Statements": {
-    "prefix": [
-      "utilio"
-    ],
-    "body": [
-      "import java.util.*;",
-      "import java.io.*;\n"
-    ],
+    "prefix": ["utilio"],
+    "body": ["import java.util.*;", "import java.io.*;\n"],
     "description": "Wildstar imports java util and java io"
   },
   "Scanner Next Integer": {
-    "prefix": [
-      "nxtint"
-    ],
-    "body": [
-      "in.nextInt()"
-    ],
+    "prefix": ["nxtint"],
+    "body": ["in.nextInt()"],
     "description": "Scanner next int"
   },
   "Scanner Next String": {
-    "prefix": [
-      "nxtstr"
-    ],
-    "body": [
-      "in.next()"
-    ],
+    "prefix": ["nxtstr"],
+    "body": ["in.next()"],
     "description": "Scanner next string"
   },
   "Scanner Next Long": {
-    "prefix": [
-      "nxtll",
-      "nxtlong"
-    ],
-    "body": [
-      "in.nextLong()"
-    ],
+    "prefix": ["nxtll", "nxtlong"],
+    "body": ["in.nextLong()"],
     "description": "Scanner next long"
   },
   "Scanner Next Double": {
-    "prefix": [
-      "nxtdbl",
-      "nxtdouble"
-    ],
-    "body": [
-      "in.nextDouble()"
-    ],
+    "prefix": ["nxtdbl", "nxtdouble"],
+    "body": ["in.nextDouble()"],
     "description": "Scanner next double"
   },
   "Arrays to String": {
-    "prefix": [
-      "atostring"
-    ],
-    "body": [
-      "Arrays.toString(${1})"
-    ],
+    "prefix": ["atostring"],
+    "body": ["Arrays.toString(${1})"],
     "description": "Arrays to String"
   },
   "PrintWriter System Out": {
-    "prefix": [
-      "PW Console"
-    ],
-    "body": [
-      "PrintWriter out = new PrintWriter(System.out, true)"
-    ],
+    "prefix": ["PW Console"],
+    "body": ["PrintWriter out = new PrintWriter(System.out, true)"],
     "description": "Printwriter System.Out"
   },
   "Infinity": {
-    "prefix": [
-      "bignum"
-    ],
-    "body": [
-      "int oo = (int)1e9;"
-    ],
+    "prefix": ["bignum"],
+    "body": ["int oo = (int)1e9;"],
     "description": "Infinity when not needing maxint"
-  },
+  }
 }

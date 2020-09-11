@@ -3,16 +3,18 @@ import java.io.*;
 
 public class dijkstra {
     static PrintWriter out = new PrintWriter(System.out, true);
-    static int oo = (int)1e9; // prevents overflow
+    static int oo = (int) 1e9; // prevents overflow
     static int n; // size of graph
-    static Map<Integer, List<edge>> g;
+    static List<edge>[] g;
 
     static class edge implements Comparable<edge> {
-        int loc;
+        int u;
+        int v;
         int w;
 
-        public edge(int ll, int ww) {
-            loc = ll;
+        public edge(int uu, int vv, int ww) {
+            u = uu;
+            v = vv;
             w = ww;
         }
 
@@ -21,25 +23,24 @@ public class dijkstra {
         }
 
         public String toString() {
-            return "(" + loc + " : " + w + ")";
+            return "(" + v + ": " + w + ")";
         }
     }
 
-    static void init() throws Exception{
+    static void init() throws Exception {
         Scanner in = new Scanner(new File("dijkstra.in"));
         n = in.nextInt();
-        g = new HashMap<>();
-        
-        for (int i = 0; i < n; i++) {
-            g.put(i, new ArrayList<>());
-        }
+        g = new List[n];
+
+        for (int i = 0; i < n; i++)
+            g[i] = new ArrayList<edge>();
 
         while (in.hasNext()) {
             int from = in.nextInt();
             int to = in.nextInt();
             int weight = in.nextInt();
 
-            g.get(from).add(new edge(to, weight));
+            g[from].add(new edge(from, to, weight));
         }
     }
 
@@ -53,20 +54,21 @@ public class dijkstra {
         dist[s] = 0;
 
         for (int i = 0; i < n; i++) {
-            minheap.add(new edge(i, dist[i]));
+            minheap.add(new edge(-1, i, dist[i]));
         }
 
         while (!minheap.isEmpty()) {
             // Smallest distance vertex
-            edge v = minheap.remove();
-            if (vis[v.loc]) continue;
+            edge v = minheap.poll();
+            if (vis[v.v])
+                continue;
 
-            vis[v.loc] = true;
+            vis[v.v] = true;
 
-            for (edge next : g.get(v.loc)) {
-                if (dist[v.loc] + next.w < dist[next.loc]) {
-                    dist[next.loc] = dist[v.loc] + next.w;
-                    minheap.add(new edge(next.loc, dist[next.loc]));
+            for (edge next : g[v.v]) {
+                if (dist[v.v] + next.w < dist[next.v]) {
+                    dist[next.v] = dist[v.v] + next.w;
+                    minheap.add(new edge(-1, next.v, dist[next.v]));
                 }
             }
         }
@@ -78,24 +80,26 @@ public class dijkstra {
     static int dijkstras(int s, int d) {
         boolean[] vis = new boolean[n];
         PriorityQueue<edge> pq = new PriorityQueue<>();
-        pq.add(new edge(s, 0)); 
+        pq.add(new edge(-1, s, 0));
 
         while (!pq.isEmpty()) {
-
             edge cur = pq.poll();
-            if (vis[cur.loc])
+            if (vis[cur.v])
                 continue;
-            vis[cur.loc]  = true;
 
-            if (cur.loc == d) return cur.w;
+            vis[cur.v] = true;
 
-            for (edge next : g.get(cur.loc))
-                if (!vis[next.loc])
-                    pq.add(new edge(next.loc, next.w + cur.w));
+            if (cur.v == d)
+                return cur.w;
+
+            for (edge next : g[cur.v])
+                if (!vis[next.v])
+                    pq.add(new edge(-1, next.v, next.w + cur.w));
         }
 
         return oo;
     }
+
     public static void main(String[] args) throws Exception {
         init();
 
