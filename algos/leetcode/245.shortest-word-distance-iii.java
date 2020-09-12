@@ -14,21 +14,31 @@ class Solution {
         int f1 = -1;
         int f2 = -1;
 
+        boolean sameword = word1.equals(word2);
+        boolean ff1 = true;
         for (int i = 0; i < n; i++) {
-            if (words[i].equals(word1)) {
-                if (f2 == -1)
+            if (!sameword) {
+                if (words[i].equals(word1)) {
                     f1 = i;
-            }
-            if (words[i].equals(word2)) {
-                if (i != f1)
+                }
+                if (words[i].equals(word2)) {
                     f2 = i;
+                }
+            } else {
+                if (words[i].equals(word1) && ff1) {
+                    f1 = i;
+                    ff1 = !ff1;
+                } else if (words[i].equals(word2) && !ff1) {
+                    f2 = i;
+                    ff1 = !ff1;
+                }
             }
 
-            if (f1 > 0 && f2 > 0) {
+            if (f1 > -1 && f2 > -1) {
                 ret = Math.min(ret, Math.abs(f1 - f2));
             }
-        }
 
+        }
         return ret;
     }
 }
