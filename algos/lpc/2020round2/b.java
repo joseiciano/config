@@ -1,6 +1,5 @@
 import java.util.*;
 import java.io.*;
-
 class FastScanner {
 
     BufferedReader br;
@@ -48,47 +47,38 @@ class FastScanner {
     }
 }
 
-class firefly {
+public class b {
     static PrintWriter out = new PrintWriter(System.out, true);
 
     public static void main(String[] args) throws Exception {
         FastScanner in = new FastScanner();
+        // FastScanner in = new FastScanner("in.txt");
+        // Scanner in = new Scanner(new File("in.txt"));
 
-        int n = in.nextInt();
-        int h = in.nextInt();
+        int t = in.nextInt();
+        int candidate = 0;
+        int electoral = 0;
+        boolean wonelec = true;
+        boolean woncan = true;
+        for (int te = 0; te < t; te++) {
+            int e = in.nextInt();
+            int c1 = in.nextInt();
+            int c2 = in.nextInt();
 
-        int min = 0;
-        int floor = 0;
+            if (c1 > c2)
+                electoral += e;
+            else if (c1 < c2)
+                electoral -= e;
 
-        int[] cave = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            cave[i] = in.nextInt();
+            candidate += c1;
+            candidate -= c2;
         }
 
-        int best = 1000000;
-        int bestcount = 0;
+        if (candidate > 0 && electoral > 0)
+            out.println(1);
+        else if (candidate < 0 && electoral < 0)
+            out.println(2);
+        else out.println(0);
 
-        out.println(Arrays.toString(cave));
-
-        for (int i = 1; i < h; i++) {
-            int cur = 0;
-            for (int j = 0; j < n; j++) {
-                if ((j % 2 == 0 && cave[j] >= i) || (j % 2 == 1 && h - cave[j] < i)) {
-                    cur++;
-                }
-            }
-
-            if (cur < best) {
-                best = cur;
-                bestcount = 1;
-            }
-
-            else if (cur == best) {
-                bestcount++;
-            }
-        }
-
-        out.println(best + " " + bestcount);
     }
 }
