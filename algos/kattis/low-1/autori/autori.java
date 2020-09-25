@@ -48,21 +48,19 @@ class FastScanner {
     }
 }
 
-public class cold {
+public class autori {
     static PrintWriter out = new PrintWriter(System.out, true);
 
     public static void main(String[] args) throws Exception {
         FastScanner in = new FastScanner();
+        String s = in.nextLine();
 
-        int n = in.nextInt();
+        String[] arr = s.split("-");
+        StringBuilder str = new StringBuilder();
 
-        int score = 0;
-        for (int i = 0; i < n; i++) {
-            int c = in.nextInt();
+        for (String a : arr)
+            str.append(a.charAt(0));
 
-            if (c < 0)
-                score++;
-        }
-        out.println(score);
+        out.println(str.toString());
     }
 }

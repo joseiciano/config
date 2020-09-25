@@ -48,21 +48,30 @@ class FastScanner {
     }
 }
 
-public class cold {
+class conundrum {
     static PrintWriter out = new PrintWriter(System.out, true);
 
     public static void main(String[] args) throws Exception {
         FastScanner in = new FastScanner();
 
-        int n = in.nextInt();
+        String s = in.nextLine();
 
-        int score = 0;
-        for (int i = 0; i < n; i++) {
-            int c = in.nextInt();
+        int days = 0;
+        String need = "PER";
+        int i = 0;
+        for (char c : s.toCharArray()) {
+            if (i > 2)
+                i = 0;
 
-            if (c < 0)
-                score++;
+            if (c == need.charAt(i)) {
+                i++;
+                continue;
+            }
+
+            days++;
+            i++;
         }
-        out.println(score);
+
+        out.println(days);
     }
 }

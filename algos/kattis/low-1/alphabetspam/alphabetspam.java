@@ -48,21 +48,41 @@ class FastScanner {
     }
 }
 
-public class cold {
+public class alphabetspam {
     static PrintWriter out = new PrintWriter(System.out, true);
 
     public static void main(String[] args) throws Exception {
         FastScanner in = new FastScanner();
 
-        int n = in.nextInt();
+        String s = in.nextLine();
 
-        int score = 0;
-        for (int i = 0; i < n; i++) {
-            int c = in.nextInt();
+        int whitespace = 0;
+        int uppercase = 0;
+        int lowercase = 0;
+        int symbols = 0;
+        int total = s.length();
 
-            if (c < 0)
-                score++;
+        for (char c : s.toCharArray()) {
+            if (c == '_')
+                whitespace++;
+            else if (Character.isLetter(c)) {
+                if (Character.isUpperCase(c))
+                    uppercase++;
+                else
+                    lowercase++;
+            } else
+                symbols++;
         }
-        out.println(score);
+
+        f(whitespace, total);
+        f(lowercase, total);
+        f(uppercase, total);
+        f(symbols, total);
     }
+
+    static void f(int s, int t) {
+        double res = (double) s / (double) t;
+        out.printf("%.16f\n", res);
+    }
+
 }
