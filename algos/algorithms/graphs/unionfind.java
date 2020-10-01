@@ -1,7 +1,7 @@
 class unionfind {
-    public int size;// ele in union find
-    public int[] sz; // size of each comp
-    public int[] id; // points to parent of i, parent[i]. if parent[i] = i, root
+    public int size;// Number of nodes
+    public int[] sz; // Size of each poinent
+    public int[] id; // Points to parent of i, parent[i]. if parent[i] = i, root
     public int numComponents;
 
     public unionfind(int size) {
