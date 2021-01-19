@@ -1,6 +1,6 @@
 class unionfind {
     public int size;// Number of nodes
-    public int[] sz; // Size of each poinent
+    public int[] sz; // Size of each component
     public int[] id; // Points to parent of i, parent[i]. if parent[i] = i, root
     public int numComponents;
 
@@ -31,7 +31,7 @@ class unionfind {
         return root;
     }
 
-    // checks if p and q are connected
+    // Checks if p and q are connected
     public boolean connected(int p, int q) {
         return find(p) == find(q);
     }

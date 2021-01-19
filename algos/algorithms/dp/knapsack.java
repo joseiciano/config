@@ -32,9 +32,11 @@ public class knapsack {
 
         for (int i = 1; i <= n; i++)
             for (int j = 1; j <= c; j++) {
-                if (items[i - 1].w <= j)
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - items[i - 1].w] + items[i - 1].v);
-                else
+                if (items[i - 1].w <= j) {
+                    int take = dp[i - 1][j - items[i - 1].w] + items[i - 1].v;
+                    int donttake = dp[i - 1][j];
+                    dp[i][j] = Math.max(take, donttake);
+                } else
                     dp[i][j] = dp[i - 1][j];
             }
 

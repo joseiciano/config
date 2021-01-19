@@ -1,18 +1,15 @@
-import java.util.*;
-import java.io.*;
-
 class tarjan { // counts strongly connected components
-    int unvisited = -1;
-    int id; // Give each node an id
-    int sccCount; // count Sccs
-    int[] ids; // ids for use in algo
-    int[] sccs; // sccs-link, stores all cc's
-    boolean[] onStack;
+    private int unvisited = -1;
+    private int id; // Give each node an id
+    public int sccCount; // count Sccs
+    private int[] ids; // ids for use in algo
+    public int[] sccs; // sccs-link, stores all cc's
+    private boolean[] onStack;
 
-    Deque<Integer> stack;
-    int n;
-    Map<Integer, List<Integer>> g;
-    Map<Integer, Integer> scount; // Count specific amount of nodes in component
+    private Deque<Integer> stack;
+    public int n;
+    public Map<Integer, List<Integer>> g;
+    public Map<Integer, Integer> scount; // Count specific amount of nodes in component
 
     public tarjan(int n) {
         this.n = n;
