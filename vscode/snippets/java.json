@@ -1,22 +1,22 @@
 {
   "Newline Print to Console": {
-    "prefix": "sysout",
+    "prefix": "sout",
     "body": ["System.out.println(\"$1\");\n"],
     "description": "Print to the console, newline"
   },
   "Printf to Console": {
-    "prefix": "sysoutf",
+    "prefix": "soutf",
     "body": ["System.out.printf(\"$1\");\n"],
     "description": "Print to the console, printf"
   },
   "Print to Console": {
-    "prefix": "sysoutnn",
+    "prefix": "soutnn",
     "body": ["System.out.print(\"$1\");\n"],
     "description": "Print to the console, no newline"
   },
   "USACO Template": {
     "prefix": "usaco",
-    "body": ["/*", "ID: icianoj1", "LANG: JAVA", "PROB: ${1}", "*/\n\n"]
+    "body": ["/*", "ID: icianoj1", "LANG: JAVA", "PROB: $TM_FILENAME_BASE", "*/\n\n"]
   },
   "For-Loop, i to j": {
     "prefix": ["fori"],
@@ -52,22 +52,8 @@
     ],
     "description": "edge class"
   },
-  "Pair": {
-    "prefix": ["tuple"],
-    "body": [
-      "class pair {",
-      "\t${1} ${2}",
-      "\t${3} ${4}\n",
-      "\tpublic pair(${1} xx, ${3} yy) {",
-      "\t\tthis.${2}=xx;",
-      "\t\tthis.${4}=yy;",
-      "\t}",
-      "}\n"
-    ],
-    "description": "Pair class"
-  },
   "Pair Comparable": {
-    "prefix": ["tuplecmp"],
+    "prefix": ["tuple"],
     "body": [
       "class pair extends Comparable<pair> {",
       "\t${1} ${2}",
@@ -77,123 +63,14 @@
       "\t\tthis.${4}=yy;",
       "\t}\n",
       "\tpublic int compareTo(pair p) {",
-      "\t\treturn ${5};",
+      "\t\treturn -1;",
       "\t}",
       "}\n"
     ],
     "description": "Pair class"
   },
-  "Scanner input file": {
-    "prefix": ["scnfile"],
-    "body": ["FastScanner in = new FastScanner(new File(${1}));"],
-    "description": "Scanner for file input"
-  },
-  "Scanner input": {
-    "prefix": ["scnin", "scanin"],
-    "body": ["FastScanner in = new FastScanner();"],
-    "description": "Scanner for user input"
-  },
   "FastScanner": {
     "prefix": ["fstscn"],
-    "body": [
-      "class FastScanner {",
-      "\tfinal private int BUFFER_SIZE = 1 << 16;",
-      "\tprivate DataInputStream din;",
-      "\tprivate byte[] buffer;",
-      "\tprivate int bufferPointer, bytesRead;\n",
-
-      "\tpublic FastScanner() {",
-      "\t\tdin = new DataInputStream(System.in);",
-      "\t\tbuffer = new byte[BUFFER_SIZE];",
-      "\t\tbufferPointer = bytesRead = 0;",
-      "\t}\n",
-
-      "\tpublic FastScanner(String filename) throws Exception {",
-      "\t\tdin = new DataInputStream(new FileInputStream(filename));",
-      "\t\tbuffer = new byte[BUFFER_SIZE];",
-      "\t\tbufferPointer = bytesRead = 0;",
-      "\t}\n",
-
-      "\tpublic String readLine() throws Exception {",
-      "\t\tbyte[] buf = new byte[64];",
-      "\t\tint cin = 0, c;",
-      "\t\twhile ((c = read()) != -1) {",
-      "\t\t\tif (c == '\\n')",
-      "\t\t\t\tbreak;",
-      "\t\t\tbuf[cin++] = (byte) c;",
-      "\t\t}",
-      "\t\treturn new String(buf, 0, cin);",
-      "\t}\n",
-
-      "\tpublic int nextInt() throws Exception {",
-      "\t\tint ret = 0;",
-      "\t\tbyte c = read();",
-      "\t\twhile (c <= ' ')",
-      "\t\t\tc = read();",
-      "\t\tboolean neg = (c == '-');",
-      "\t\tif (neg)",
-      "\t\t\tc = read();",
-      "\t\tdo {",
-      "\t\t\tret = ret * 10 + c - '0';",
-      "\t\t} while ((c = read()) >= '0' && c <= '9');",
-      "\t\treturn ret * (neg ? -1 : 1);",
-      "\t}\n",
-
-      "\tpublic long nextLong() throws Exception {",
-      "\t\tlong ret = 0;",
-      "\t\tbyte c = read();",
-      "\t\twhile (c <= ' ')",
-      "\t\t\tc = read();",
-      "\t\tboolean neg = (c == '-');",
-      "\t\tif (neg)",
-      "\t\t\tc = read();",
-      "\t\tdo {",
-      "\t\t\tret = ret * 10 + c - '0';",
-      "\t\t} while ((c = read()) >= '0' && c <= '9');",
-      "\t\treturn ret * (neg ? -1 : 1);",
-      "\t}\n",
-
-      "\tpublic double nextDouble() throws Exception {",
-      "\t\tdouble ret = 0, div = 1;",
-      "\t\tbyte c = read();",
-      "\t\twhile (c <= ' ')",
-      "\t\t\tc = read();",
-      "\t\tboolean neg = (c == '-');",
-      "\t\tif (neg)",
-      "\t\t\tc = read();",
-      "\t\tdo {",
-      "\t\t\tret = ret * 10 + c - '0';",
-      "\t\t} while ((c = read()) >= '0' && c <= '9');",
-      "\t\tif (c == '.') {",
-      "\t\t\twhile ((c = read()) >= '0' && c <= '9') {",
-      "\t\t\t\tret += (c - '0') / (div *= 10);",
-      "\t\t\t}",
-      "\t\t}",
-      "\t\treturn ret * (neg ? -1 : 1);",
-      "\t}\n",
-
-      "\tprivate void fillBuffer() throws Exception {",
-      "\t\tbytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);",
-      "\t\tif (bytesRead == -1)",
-      "\t\t\tbuffer[0] = -1;",
-      "\t}\n",
-
-      "\tprivate byte read() throws Exception {",
-      "\t\tif (bufferPointer == bytesRead)",
-      "\t\t\tfillBuffer();",
-      "\t\treturn buffer[bufferPointer++];",
-      "\t}\n",
-
-      "\tpublic void close() throws Exception {",
-      "\t\tif (din != null)",
-      "\t\t\tdin.close();",
-      "\t}",
-      "}\n"
-    ],
-    "description": "Fastest Scanner in the West"
-  },
-  "Old FastScanner": {
-    "prefix": ["oldfstscn"],
     "body": [
       "class FastScanner {\n",
       "\tBufferedReader br;",
@@ -237,7 +114,7 @@
     "description": "Old Fast Scanner for Input"
   },
   "Default Import Statements": {
-    "prefix": ["utilio"],
+    "prefix": ["utiliowildstar"],
     "body": ["import java.util.*;", "import java.io.*;\n"],
     "description": "Wildstar imports java util and java io"
   },
@@ -257,7 +134,7 @@
     "description": "Scanner next long"
   },
   "Scanner Next Double": {
-    "prefix": ["nxtdbl", "nxtdouble"],
+    "prefix": ["nxtzdbl", "nxtzdouble"],
     "body": ["in.nextDouble()"],
     "description": "Scanner next double"
   },
@@ -266,14 +143,78 @@
     "body": ["Arrays.toString(${1})"],
     "description": "Arrays to String"
   },
-  "PrintWriter System Out": {
-    "prefix": ["PW Console"],
-    "body": ["PrintWriter out = new PrintWriter(System.out, true);"],
-    "description": "Printwriter System.Out"
-  },
-  "Infinity": {
-    "prefix": ["bignum"],
-    "body": ["int oo = (int)1e9;"],
-    "description": "Infinity when not needing maxint"
+  "Competitive Programming Template": {
+    "prefix": "utilio",
+    "body": [
+      "import java.util.*;\r",
+      "import java.io.*;\r",
+      "\r",
+      "public class $TM_FILENAME_BASE {\r",
+      "  static class FastScanner {\r",
+      "    BufferedReader br;\r",
+      "    StringTokenizer st;\r",
+      "\r",
+      "    public FastScanner(String file) throws Exception {\r",
+      "      br = new BufferedReader(new BufferedReader(new FileReader(file)));\r",
+      "    }\r",
+      "\r",
+      "    public FastScanner() {\r",
+      "      br = new BufferedReader(new InputStreamReader(System.in));\r",
+      "    }\r",
+      "\r",
+      "    String next() {\r",
+      "      while (st == null || !st.hasMoreElements()) {\r",
+      "        try {\r",
+      "          st = new StringTokenizer(br.readLine());\r",
+      "        } catch (IOException e) {\r",
+      "          e.printStackTrace();\r",
+      "        }\r",
+      "      }\r",
+      "      return st.nextToken();\r",
+      "    }\r",
+      "\r",
+      "    int nextInt() {\r",
+      "      return Integer.parseInt(next());\r",
+      "    }\r",
+      "\r",
+      "    long nextLong() {\r",
+      "      return Long.parseLong(next());\r",
+      "    }\r",
+      "\r",
+      "    double nextDouble() {\r",
+      "      return Double.parseDouble(next());\r",
+      "    }\r",
+      "\r",
+      "    String nextLine() {\r",
+      "      String str = \"\";\r",
+      "      try {\r",
+      "        str = br.readLine();\r",
+      "      } catch (IOException e) {\r",
+      "        e.printStackTrace();\r",
+      "      }\r",
+      "      return str;\r",
+      "    }\r",
+      "  }\r",
+      "\r",
+      "  static final PrintWriter out = new PrintWriter(System.out, true);\r",
+      "  // static final FastScanner in = new FastScanner($TM_FILENAME_BASE.txt);\r",
+      "  static final int oo = (int) 1e9;\r",
+      "  static final int MOD = (int) 1e9 + 7;\r",
+      "  static final FastScanner in = new FastScanner();\r",
+      "\r",
+      "  public static void main(String[] args) throws Exception {\r",
+      "    int te = in.nextInt();\r",
+      "\r",
+      "    for (int t = 1; t <= te; t++) {\r",
+      "      solve();\r",
+      "    }\r",
+      "  }\r",
+      "\r",
+      "  static void solve() throws Exception {\r",
+      "\r",
+      "  }\r",
+      "}"
+    ],
+    "description": "Competitive Programming Template"
   }
 }
