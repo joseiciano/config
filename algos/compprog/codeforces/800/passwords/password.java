@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class passwords {
+public class password {
   static class FastScanner {
     BufferedReader br;
     StringTokenizer st;
@@ -70,27 +70,31 @@ public class passwords {
     n = in.nextInt();
     s = in.next().toCharArray();
 
-    dp = new int[10][n+1];
-    for (int i = 0; i < 10; i++) Arrays.fill(dp[i], -1);
+    dp = new int[n + 1][10];
+    for (int i = 0; i <= n; i++)
+      Arrays.fill(dp[i], -1);
 
     int ret = dfs(0, 1);
     out.println(ret);
   }
 
   static int dfs(int idx, int prev) {
-      if (idx == n) 
-          return 1;
-    if (dp[idx][prev] > -1) return dp[idx][prev];  
-      
-      int ways = 0;
+    if (idx >= n)
+      return 1;
+    if (dp[idx][prev] > -1)
+      return dp[idx][prev];
 
-      for (int toPlace = 1; toPlace < 10; toPlace++) {
-          if (toPlace < prev) continue;
-          if (s[idx] != '-' && (s[idx]-'0') != toPlace) continue;
-          ways += dfs(idx+1, toPlace);
-          ways %= MOD;
-      }
+    int ways = 0;
 
-      return dp[idx][prev] = ways;
+    for (int toPlace = 1; toPlace < 10; toPlace++) {
+      if (toPlace < prev)
+        continue;
+      if (s[idx] != '-' && (s[idx] - '0') != toPlace)
+        continue;
+      ways += dfs(idx + 1, toPlace);
+      ways %= MOD;
+    }
+
+    return dp[idx][prev] = ways;
   }
 }
