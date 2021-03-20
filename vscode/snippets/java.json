@@ -16,7 +16,13 @@
   },
   "USACO Template": {
     "prefix": "usaco",
-    "body": ["/*", "ID: icianoj1", "LANG: JAVA", "PROB: $TM_FILENAME_BASE", "*/\n\n"]
+    "body": [
+      "/*",
+      "ID: icianoj1",
+      "LANG: JAVA",
+      "PROB: $TM_FILENAME_BASE",
+      "*/\n\n"
+    ]
   },
   "For-Loop, i to j": {
     "prefix": ["fori"],
@@ -30,14 +36,18 @@
   },
   "Public static void main throws Exception": {
     "prefix": ["mnexc", "mainexc"],
-    "body": ["public static void main(String[] args) throws Exception {", "\t$0", "}"],
+    "body": [
+      "public static void main(String[] args) throws Exception {",
+      "\t$0",
+      "}"
+    ],
     "description": "main throws Exception"
   },
   "Edge": {
     "prefix": ["vertex-class", "vrtx"],
     "body": [
       "class edge implements Comparable<edge>{",
-      "\tint loc; // current source",
+      "\tint v; // current source",
       "\tint w; // weight\n",
       "\tpublic pair(int ll, int ww) {",
       "\t\tloc = ll;",
@@ -51,23 +61,6 @@
       "}\n"
     ],
     "description": "edge class"
-  },
-  "Pair Comparable": {
-    "prefix": ["tuple"],
-    "body": [
-      "class pair extends Comparable<pair> {",
-      "\t${1} ${2}",
-      "\t${3} ${4}\n",
-      "\tpublic pair(${1} xx, ${3} yy) {",
-      "\t\tthis.${2}=xx;",
-      "\t\tthis.${4}=yy;",
-      "\t}\n",
-      "\tpublic int compareTo(pair p) {",
-      "\t\treturn -1;",
-      "\t}",
-      "}\n"
-    ],
-    "description": "Pair class"
   },
   "FastScanner": {
     "prefix": ["fstscn"],
