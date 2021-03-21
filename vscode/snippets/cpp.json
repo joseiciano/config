@@ -1,0 +1,42 @@
+{
+	"Competitive Programming Template": {
+		"prefix": "utilio",
+		"body": [
+			"#include <bits/stdc++.h>\r",
+			"\r",
+			"using namespace std;\r",
+			"\r",
+			"typedef long long ll;\r",
+			"typedef unsigned long long ull;\r",
+			"typedef pair<ll, ll> pll;\r",
+			"\r",
+			"#define fori(i, n) for (int i = 0; i < (int)n; ++i)\r",
+			"#define forii(i, m, n) for (int i = (int)m; i < (int)n; ++i)\r",
+			"#define revfori(i, n) for (int i = (int)(n - 1); i >= 0; --i)\r",
+			"#define revforii(i, m, n) for (int i = (int)(n - 1); i >= (int)m; --i)\r",
+			"\r",
+			"const ll MOD = 1e9 + 7;\r",
+			"const ll INF = 1e9;\r",
+			"\r",
+			"int main(void) {\r",
+			"    ios_base::sync_with_stdio(0);\r",
+			"    cin.tie(0);\r",
+			"    cout.tie(0);\r",
+			"\r",
+			"    int te;\r",
+			"    cin >> te;\r",
+			"    for (int t = 1; t <= te; t++) {\r",
+			"        // cout << \"Case #\" << t << \": \";\r",
+			"        solve();\r",
+			"    }\r",
+			"\r",
+			"    return 0;\r",
+			"}\r",
+			"\r",
+			"void solve() {\r",
+			"\r",
+			"}"
+		],
+		"description": "Competitive Programming Template"
+	}
+}
