@@ -6,6 +6,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<ll, ll> pll;
 
+#define fin(x) cin >> x
 #define fi first
 #define se second
 #define mp make_pair
@@ -15,7 +16,7 @@ typedef pair<ll, ll> pll;
 #define mem(a, b) memset(a, (b), sizeof(a))
 #define all(x) x.begin(), x.end()
 #define rall(x) x.end(), x.begin()
-#define fori(i, n) for (int i = 0; i < (int)n; ++i)
+#define fori(n) for (int i = 0; i < (int)n; ++i)
 #define forii(i, m, n) for (int i = (int)m; i < (int)n; ++i)
 #define revfori(i, n) for (int i = (int)(n - 1); i >= 0; --i)
 #define revforii(i, m, n) for (int i = (int)(n - 1); i >= (int)m; --i)
@@ -28,25 +29,21 @@ const double PI = acos(-1);
 const int dirx[8] = {-1, 0, 0, 1, -1, -1, 1, 1};
 const int diry[8] = {0, 1, -1, 0, -1, 1, -1, 1};
 
+void solve() {}
+
 int main(void) {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 
-    ll n;
-    cin >> n;
-    ll exp = (n * (n + 1)) / 2;
-    ll real = 0;
+    ull te;
+    fin(te);
 
-    for (ll i = 0; i < n; i++) {
-        int b = 0;
-        cin >> b;
-        real += b;
+    ull start = 1;
+    for (int i = 0; i < te; i++) {
+        start = (start << 1) % MOD;
     }
-
-    cout << (exp - real) << endl;
+    cout << start << "\n";
 
     return 0;
 }
-
-void solve() {}

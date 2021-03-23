@@ -6,6 +6,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<ll, ll> pll;
 
+#define fin(x) cin >> x
 #define fi first
 #define se second
 #define mp make_pair
@@ -28,25 +29,24 @@ const double PI = acos(-1);
 const int dirx[8] = {-1, 0, 0, 1, -1, -1, 1, 1};
 const int diry[8] = {0, 1, -1, 0, -1, 1, -1, 1};
 
+void solve() {}
+
 int main(void) {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 
-    ll n;
-    cin >> n;
-    ll exp = (n * (n + 1)) / 2;
-    ll real = 0;
+    int n;
+    fin(n);
 
-    for (ll i = 0; i < n; i++) {
-        int b = 0;
-        cin >> b;
-        real += b;
+    if (n == 2 || n == 3) {
+        cout << "NO SOLUTION\n";
+        return 0;
     }
 
-    cout << (exp - real) << endl;
+    for (int i = 2; i <= n; i += 2) cout << i << " ";
+    for (int i = 1; i <= n; i += 2) cout << i << " ";
+    cout << "\n";
 
     return 0;
 }
-
-void solve() {}
