@@ -9,6 +9,7 @@ def longestCommonSubsequence(a: str, b: str) -> str:
             else:
                 dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 
+    # Printing lcss
     length = dp[len(a)][len(b)]
     ret = ['' for _ in range(length + 1)]
 
@@ -26,7 +27,6 @@ def longestCommonSubsequence(a: str, b: str) -> str:
         else:
             j -= 1
 
-        print(ret)
     return "".join(ret)
 
 
